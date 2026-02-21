@@ -5,8 +5,8 @@ import json
 import os
 import uuid
 
-from hotel import Hotel
-from customer import Customer
+from src.hotel import Hotel
+from src.customer import Customer
 
 DATA_FILE = "data/reservations.json"
 
