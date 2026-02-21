@@ -3,7 +3,7 @@
         "hotel_id": "H1",
         "name": "Grande",
         "location": "NYC",
-        "total_rooms": 3,
-        "available_rooms": 3
+        "total_rooms": 4,
+        "available_rooms": 4
     }
 }
