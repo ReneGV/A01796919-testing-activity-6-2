@@ -1,25 +1,19 @@
 #!/usr/bin/env python3
 """Customer class with simple file-based persistence."""
 
-import json
-import os
+from src.file_db import read_json, write_json
 
 DATA_FILE = "data/customers.json"
 
 
 def load_customers_data():
     """Load customers from JSON file."""
-    if not os.path.exists(DATA_FILE):
-        return {}
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+    return read_json(DATA_FILE)
 
 
 def save_customers_data(data):
     """Save customers to JSON file."""
-    os.makedirs("data", exist_ok=True)
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    write_json(DATA_FILE, data)
 
 
 class Customer:

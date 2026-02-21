@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Reservation class with simple file-based persistence."""
 
-import json
-import os
 import uuid
 
+from src.file_db import read_json, write_json
 from src.hotel import Hotel
 from src.customer import Customer
 
@@ -13,17 +12,12 @@ DATA_FILE = "data/reservations.json"
 
 def load_reservations_data():
     """Load reservations from JSON file."""
-    if not os.path.exists(DATA_FILE):
-        return {}
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+    return read_json(DATA_FILE)
 
 
 def save_reservations_data(data):
     """Save reservations to JSON file."""
-    os.makedirs("data", exist_ok=True)
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+    write_json(DATA_FILE, data)
 
 
 class Reservation:
