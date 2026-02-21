@@ -3,8 +3,6 @@ name: coverage
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   pull_request_target:
     branches: [ main ]
 
@@ -56,7 +54,7 @@ jobs:
           path: coverage_html.zip
 
       - name: Post coverage summary to PR
-        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
+        if: github.event_name == 'pull_request_target'
         uses: actions/github-script@v7
         with:
           script: |
