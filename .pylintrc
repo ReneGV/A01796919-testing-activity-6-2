@@ -20,8 +20,5 @@ max-line-length=79
 max-public-methods=20
 
 [REPORTS]
-# Display a full report at the end
-reports=yes
-
 # Score the code out of 10
 score=yes

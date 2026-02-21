@@ -50,13 +50,6 @@ class Reservation:
             data.get("status", "active"),
         )
 
-    def display(self):
-        """Print reservation details to the console."""
-        print(f"Reservation ID : {self.reservation_id}")
-        print(f"Customer ID    : {self.customer_id}")
-        print(f"Hotel ID       : {self.hotel_id}")
-        print(f"Status         : {self.status}")
-
     @staticmethod
     def get_all_reservations():
         """Return all reservations as a list of Reservation objects."""

@@ -4,6 +4,6 @@
         "name": "Grand",
         "location": "NYC",
         "total_rooms": 3,
-        "available_rooms": 3
+        "available_rooms": 2
     }
 }

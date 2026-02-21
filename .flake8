@@ -1,4 +1,7 @@
 [flake8]
+# Maximum line length (PEP-8)
+max-line-length = 79
+
 # Verbose output
 show-source = True
 show-pep8 = True

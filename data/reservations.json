@@ -1,1 +1,8 @@
-{}
+{
+    "b5b7a0ca-2b57-4e85-a870-2853ed51c588": {
+        "reservation_id": "b5b7a0ca-2b57-4e85-a870-2853ed51c588",
+        "customer_id": "C1",
+        "hotel_id": "H1",
+        "status": "active"
+    }
+}

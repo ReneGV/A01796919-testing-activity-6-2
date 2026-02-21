@@ -49,15 +49,6 @@ class Hotel:
         hotel.available_rooms = int(data["available_rooms"])
         return hotel
 
-    def display(self):
-        """Print hotel details to the console."""
-        print(f"ID       : {self.hotel_id}")
-        print(f"Name     : {self.name}")
-        print(f"Location : {self.location}")
-        print(
-            f"Rooms    : {self.available_rooms}/{self.total_rooms} available"
-        )
-
     @staticmethod
     def get_all_hotels():
         """Return all hotels as a list of Hotel objects."""
@@ -66,7 +57,14 @@ class Hotel:
             for data in load_hotels_data().values()
         ]
 
-    # --- CRUD operations ---
+    @staticmethod
+    def get_hotel(hotel_id):
+        """Return a Hotel by ID, or None if not found."""
+        hotel_id = str(hotel_id)
+        return next(
+            (h for h in Hotel.get_all_hotels() if h.hotel_id == hotel_id),
+            None
+        )
 
     @staticmethod
     def create_hotel(hotel_id, name, location, total_rooms):
@@ -98,20 +96,6 @@ class Hotel:
         save_hotels_data(hotels)
         print(f"Hotel '{hotel_id}' deleted.")
         return True
-
-    @staticmethod
-    def display_hotel(hotel_id):
-        """Print details of one hotel. Returns Hotel or None."""
-        hotels = load_hotels_data()
-        hotel_id = str(hotel_id)
-
-        if hotel_id not in hotels:
-            print(f"Error: Hotel '{hotel_id}' not found.")
-            return None
-
-        hotel = Hotel.from_dict(hotels[hotel_id])
-        hotel.display()
-        return hotel
 
     @staticmethod
     def modify_hotel(hotel_id, name=None, location=None, total_rooms=None):

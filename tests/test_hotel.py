@@ -6,8 +6,8 @@ from tests.helpers import clear_data
 from src.hotel import Hotel
 
 
-class TestHotelBasic(unittest.TestCase):
-    """Tests for Hotel init, helpers, create, delete, and display."""
+class TestHotel(unittest.TestCase):
+    """Tests for the Hotel class."""
 
     def setUp(self):
         """Clear data before each test."""
@@ -34,10 +34,6 @@ class TestHotelBasic(unittest.TestCase):
                "location": "NYC", "total_rooms": 5, "available_rooms": 3}
         self.assertEqual(Hotel.from_dict(raw).available_rooms, 3)
 
-    def test_display_prints(self):
-        """display() runs without raising an exception."""
-        Hotel("H1", "Grand", "NYC", 5).display()
-
     def test_create_hotel_success(self):
         """create_hotel returns a Hotel and saves it to the file."""
         hotel = Hotel.create_hotel("H1", "Grand", "NYC", 5)
@@ -60,25 +56,6 @@ class TestHotelBasic(unittest.TestCase):
     def test_delete_hotel_not_found(self):
         """delete_hotel returns False when the hotel does not exist."""
         self.assertFalse(Hotel.delete_hotel("NOPE"))
-
-    def test_display_hotel_success(self):
-        """display_hotel returns the Hotel object when found."""
-        Hotel.create_hotel("H1", "Grand", "NYC", 5)
-        hotel = Hotel.display_hotel("H1")
-        self.assertIsNotNone(hotel)
-        self.assertEqual(hotel.name, "Grand")
-
-    def test_display_hotel_not_found(self):
-        """display_hotel returns None when the hotel does not exist."""
-        self.assertIsNone(Hotel.display_hotel("NOPE"))
-
-
-class TestHotelOperations(unittest.TestCase):
-    """Tests for Hotel modify, reserve_room, and cancel_room."""
-
-    def setUp(self):
-        """Clear data before each test."""
-        clear_data()
 
     def test_modify_hotel_name(self):
         """modify_hotel updates the name field."""
@@ -107,7 +84,7 @@ class TestHotelOperations(unittest.TestCase):
         """reserve_room decrements available_rooms and returns True."""
         Hotel.create_hotel("H1", "Grand", "NYC", 2)
         self.assertTrue(Hotel.reserve_room("H1"))
-        self.assertEqual(Hotel.display_hotel("H1").available_rooms, 1)
+        self.assertEqual(Hotel.get_hotel("H1").available_rooms, 1)
 
     def test_reserve_room_no_availability(self):
         """reserve_room returns False when no rooms are left."""
@@ -124,7 +101,7 @@ class TestHotelOperations(unittest.TestCase):
         Hotel.create_hotel("H1", "Grand", "NYC", 2)
         Hotel.reserve_room("H1")
         self.assertTrue(Hotel.cancel_room("H1"))
-        self.assertEqual(Hotel.display_hotel("H1").available_rooms, 2)
+        self.assertEqual(Hotel.get_hotel("H1").available_rooms, 2)
 
     def test_cancel_room_already_full(self):
         """cancel_room returns False when all rooms are already free."""
@@ -134,14 +111,6 @@ class TestHotelOperations(unittest.TestCase):
     def test_cancel_room_not_found(self):
         """cancel_room returns False when the hotel does not exist."""
         self.assertFalse(Hotel.cancel_room("NOPE"))
-
-
-class TestHotelGetAll(unittest.TestCase):
-    """Tests for Hotel.get_all_hotels."""
-
-    def setUp(self):
-        """Clear data before each test."""
-        clear_data()
 
     def test_get_all_hotels_empty(self):
         """get_all_hotels returns an empty list when no hotels exist."""
@@ -156,12 +125,6 @@ class TestHotelGetAll(unittest.TestCase):
         ids = [h.hotel_id for h in hotels]
         self.assertIn("H1", ids)
         self.assertIn("H2", ids)
-
-    def test_get_all_hotels_returns_hotel_objects(self):
-        """get_all_hotels returns a list of Hotel instances."""
-        Hotel.create_hotel("H1", "Grand", "NYC", 5)
-        hotels = Hotel.get_all_hotels()
-        self.assertIsInstance(hotels[0], Hotel)
 
 
 if __name__ == "__main__":

@@ -45,13 +45,6 @@ class Customer:
             data["phone"],
         )
 
-    def display(self):
-        """Print customer details to the console."""
-        print(f"ID    : {self.customer_id}")
-        print(f"Name  : {self.name}")
-        print(f"Email : {self.email}")
-        print(f"Phone : {self.phone}")
-
     @staticmethod
     def get_all_customers():
         """Return all customers as a list of Customer objects."""
@@ -59,6 +52,16 @@ class Customer:
             Customer.from_dict(data)
             for data in load_customers_data().values()
         ]
+
+    @staticmethod
+    def get_customer(customer_id):
+        """Return a Customer by ID, or None if not found."""
+        customer_id = str(customer_id)
+        return next(
+            (c for c in Customer.get_all_customers()
+             if c.customer_id == customer_id),
+            None
+        )
 
     # --- CRUD operations ---
 
@@ -92,20 +95,6 @@ class Customer:
         save_customers_data(customers)
         print(f"Customer '{customer_id}' deleted.")
         return True
-
-    @staticmethod
-    def display_customer(customer_id):
-        """Print details of one customer. Returns Customer or None."""
-        customers = load_customers_data()
-        customer_id = str(customer_id)
-
-        if customer_id not in customers:
-            print(f"Error: Customer '{customer_id}' not found.")
-            return None
-
-        customer = Customer.from_dict(customers[customer_id])
-        customer.display()
-        return customer
 
     @staticmethod
     def modify_customer(customer_id, name=None, email=None, phone=None):

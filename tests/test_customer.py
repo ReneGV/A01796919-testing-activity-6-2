@@ -32,10 +32,6 @@ class TestCustomer(unittest.TestCase):
                "email": "a@test.com", "phone": "555"}
         self.assertEqual(Customer.from_dict(raw).name, "Alice")
 
-    def test_display_prints(self):
-        """display() runs without raising an exception."""
-        Customer("C1", "Alice", "a@test.com", "555").display()
-
     def test_create_customer_success(self):
         """create_customer returns a Customer and saves it to the file."""
         c = Customer.create_customer("C1", "Alice", "a@test.com", "555")
@@ -60,17 +56,6 @@ class TestCustomer(unittest.TestCase):
     def test_delete_customer_not_found(self):
         """delete_customer returns False when customer does not exist."""
         self.assertFalse(Customer.delete_customer("NOPE"))
-
-    def test_display_customer_success(self):
-        """display_customer returns the Customer object when found."""
-        Customer.create_customer("C1", "Alice", "a@test.com", "555")
-        c = Customer.display_customer("C1")
-        self.assertIsNotNone(c)
-        self.assertEqual(c.name, "Alice")
-
-    def test_display_customer_not_found(self):
-        """display_customer returns None when customer does not exist."""
-        self.assertIsNone(Customer.display_customer("NOPE"))
 
     def test_modify_customer_name(self):
         """modify_customer updates the name field."""
@@ -97,14 +82,6 @@ class TestCustomer(unittest.TestCase):
     def test_modify_customer_not_found(self):
         """modify_customer returns None when customer does not exist."""
         self.assertIsNone(Customer.modify_customer("NOPE", name="X"))
-
-
-class TestCustomerGetAll(unittest.TestCase):
-    """Tests for Customer.get_all_customers."""
-
-    def setUp(self):
-        """Clear data before each test."""
-        clear_data()
 
     def test_get_all_customers_empty(self):
         """get_all_customers returns an empty list when no customers exist."""

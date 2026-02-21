@@ -46,15 +46,11 @@ class TestReservation(unittest.TestCase):
         raw = {"reservation_id": "R1", "customer_id": "C1", "hotel_id": "H1"}
         self.assertEqual(Reservation.from_dict(raw).status, "active")
 
-    def test_display_prints(self):
-        """display() runs without raising an exception."""
-        Reservation("R1", "C1", "H1").display()
-
     def test_create_reservation_success(self):
         """create_reservation returns a Reservation and reduces room count."""
         r = Reservation.create_reservation("C1", "H1")
         self.assertIsNotNone(r)
-        self.assertEqual(Hotel.display_hotel("H1").available_rooms, 2)
+        self.assertEqual(Hotel.get_hotel("H1").available_rooms, 2)
 
     def test_create_reservation_customer_not_found(self):
         """create_reservation returns None when the customer is missing."""
@@ -74,7 +70,7 @@ class TestReservation(unittest.TestCase):
         """cancel_reservation marks it cancelled and restores the room."""
         r = Reservation.create_reservation("C1", "H1")
         self.assertTrue(Reservation.cancel_reservation(r.reservation_id))
-        self.assertEqual(Hotel.display_hotel("H1").available_rooms, 3)
+        self.assertEqual(Hotel.get_hotel("H1").available_rooms, 3)
 
     def test_cancel_reservation_not_found(self):
         """cancel_reservation returns False when ID does not exist."""
