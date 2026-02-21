@@ -47,13 +47,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml.zip
-          path: coverage_xml
+          path: coverage_xml.zip
 
       - name: Upload coverage HTML
         uses: actions/upload-artifact@v4
         with:
           name: coverage-html.zip
-          path: coverage_html
+          path: coverage_html.zip
 
       - name: Post coverage summary to PR
         if: github.event_name == 'pull_request' || github.event_name == 'pull_request_target'
