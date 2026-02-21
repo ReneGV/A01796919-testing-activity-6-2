@@ -1,6 +1,6 @@
 {
-    "H2": {
-        "hotel_id": "H2",
+    "H1": {
+        "hotel_id": "H1",
         "name": "Grand",
         "location": "NYC",
         "total_rooms": 3,
