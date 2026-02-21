@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+"""Customer class with simple file-based persistence."""
+
+import json
+import os
+
+DATA_FILE = "data/customers.json"
+
+
+def load_customers_data():
+    """Load customers from JSON file."""
+    if not os.path.exists(DATA_FILE):
+        return {}
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_customers_data(data):
+    """Save customers to JSON file."""
+    os.makedirs("data", exist_ok=True)
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
+
+
+class Customer:
+    """Represents a customer with basic contact information."""
+
+    def __init__(self, customer_id, name, email, phone):
+        """Initialize a Customer instance."""
+        self.customer_id = str(customer_id)
+        self.name = str(name)
+        self.email = str(email)
+        self.phone = str(phone)
+
+    def to_dict(self):
+        """Return customer data as a dictionary."""
+        return {
+            "customer_id": self.customer_id,
+            "name": self.name,
+            "email": self.email,
+            "phone": self.phone,
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        """Build a Customer object from a dictionary."""
+        return cls(
+            data["customer_id"],
+            data["name"],
+            data["email"],
+            data["phone"],
+        )
+
+    def display(self):
+        """Print customer details to the console."""
+        print(f"ID    : {self.customer_id}")
+        print(f"Name  : {self.name}")
+        print(f"Email : {self.email}")
+        print(f"Phone : {self.phone}")
+
+    @staticmethod
+    def get_all_customers():
+        """Return all customers as a list of Customer objects."""
+        return [
+            Customer.from_dict(data)
+            for data in load_customers_data().values()
+        ]
+
+    # --- CRUD operations ---
+
+    @staticmethod
+    def create_customer(customer_id, name, email, phone):
+        """Create and save a new customer. Returns Customer or None."""
+        customers = load_customers_data()
+        customer_id = str(customer_id)
+
+        if customer_id in customers:
+            print(f"Error: Customer '{customer_id}' already exists.")
+            return None
+
+        customer = Customer(customer_id, name, email, phone)
+        customers[customer_id] = customer.to_dict()
+        save_customers_data(customers)
+        print(f"Customer '{name}' created.")
+        return customer
+
+    @staticmethod
+    def delete_customer(customer_id):
+        """Delete a customer by ID. Returns True or False."""
+        customers = load_customers_data()
+        customer_id = str(customer_id)
+
+        if customer_id not in customers:
+            print(f"Error: Customer '{customer_id}' not found.")
+            return False
+
+        del customers[customer_id]
+        save_customers_data(customers)
+        print(f"Customer '{customer_id}' deleted.")
+        return True
+
+    @staticmethod
+    def display_customer(customer_id):
+        """Print details of one customer. Returns Customer or None."""
+        customers = load_customers_data()
+        customer_id = str(customer_id)
+
+        if customer_id not in customers:
+            print(f"Error: Customer '{customer_id}' not found.")
+            return None
+
+        customer = Customer.from_dict(customers[customer_id])
+        customer.display()
+        return customer
+
+    @staticmethod
+    def modify_customer(customer_id, name=None, email=None, phone=None):
+        """Update one or more fields of a customer.
+
+        Returns Customer or None.
+        """
+        customers = load_customers_data()
+        customer_id = str(customer_id)
+
+        if customer_id not in customers:
+            print(f"Error: Customer '{customer_id}' not found.")
+            return None
+
+        customer = Customer.from_dict(customers[customer_id])
+
+        if name is not None:
+            customer.name = str(name)
+        if email is not None:
+            customer.email = str(email)
+        if phone is not None:
+            customer.phone = str(phone)
+
+        customers[customer_id] = customer.to_dict()
+        save_customers_data(customers)
+        print(f"Customer '{customer_id}' updated.")
+        return customer
