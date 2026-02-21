@@ -3,7 +3,7 @@
 analyse-fallback-blocks=no
 
 # Files or directories to ignore
-ignore=venv,data,.git
+ignore=venv,data,.git,__pycache__
 
 # Recursively check all subdirectories
 recursive=yes
