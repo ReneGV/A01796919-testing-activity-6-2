@@ -1,14 +1,13 @@
+[![coverage](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/coverage.yml/badge.svg?branch=main)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/coverage.yml)
+[![flake8](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/flake8.yml/badge.svg?branch=main)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/flake8.yml)
+[![pylint](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pylint.yml/badge.svg)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pylint.yml)
+[![pytest](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pytest.yml/badge.svg?branch=main)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pytest.yml)
+
 # Activity 6.2 – Hotel Reservation System
+
 
 Simple hotel reservation system implemented in Python following PEP-8.
 
-[![coverage](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/coverage.yml/badge.svg?branch=main)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/coverage.yml)
-
-[![flake8](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/flake8.yml/badge.svg?branch=main)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/flake8.yml)
-
-[![pylint](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pylint.yml/badge.svg)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pylint.yml)
-
-[![pytest](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pytest.yml/badge.svg?branch=main)](https://github.com/ReneGV/A01796919-testing-activity-6-2/actions/workflows/pytest.yml)
 
 ---
 
