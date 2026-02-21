@@ -48,6 +48,8 @@ coverage report -m
 
 ![Pytest](images/coverage.png)
 
+Github actions also include a code coverage comment as it can be seen [in this sample PR](https://github.com/ReneGV/A01796919-testing-activity-6-2/pull/1).
+![Pytest](images/coverage-comment.png)
 
 ## Linting
 
