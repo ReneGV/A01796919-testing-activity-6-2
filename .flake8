@@ -1,0 +1,14 @@
+[flake8]
+# Verbose output
+show-source = True
+show-pep8 = True
+show-error-codes = True
+statistics = True
+count = True
+
+# Folders to skip
+exclude =
+    venv,
+    data,
+    .git,
+    __pycache__
