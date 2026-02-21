@@ -5,6 +5,12 @@ import json
 import os
 from typing import Dict
 
+
+def ensure_data_dir():
+    """Ensure the `data` directory exists for JSON files."""
+    os.makedirs("data", exist_ok=True)
+
+
 def read_json(filepath):
     """Read JSON from `filepath` and return the parsed object."""
     if not os.path.exists(filepath):
