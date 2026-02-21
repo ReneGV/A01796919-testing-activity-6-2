@@ -35,7 +35,7 @@ pytest
 
 ```bash
 coverage run --source=. -m pytest
-coverage report --include="src/hotel.py,src/customer.py,src/reservation.py"
+coverage report -m
 ```
 
 ![Pytest](images/coverage.png)
