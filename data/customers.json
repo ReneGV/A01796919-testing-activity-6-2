@@ -1,6 +1,6 @@
 {
-    "C2": {
-        "customer_id": "C2",
+    "C1": {
+        "customer_id": "C1",
         "name": "Alice",
         "email": "a@test.com",
         "phone": "555"
