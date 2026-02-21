@@ -48,7 +48,7 @@ jobs:
       - name: Upload coverage ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report-zip
+          name: coverage-report-${{ github.event.pull_request.number || github.run_id }}.zip
           path: coverage_report.zip
 
       - name: Post coverage summary to PR
