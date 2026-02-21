@@ -1,0 +1,27 @@
+[MAIN]
+# Analyse import fallback blocks
+analyse-fallback-blocks=no
+
+# Files or directories to ignore
+ignore=venv,data,.git
+
+# Recursively check all subdirectories
+recursive=yes
+
+# Use multiple processes to speed up pylint
+jobs=1
+
+[FORMAT]
+# Maximum number of characters on a single line (PEP-8)
+max-line-length=79
+
+[DESIGN]
+# Maximum number of public methods for a class
+max-public-methods=20
+
+[REPORTS]
+# Display a full report at the end
+reports=yes
+
+# Score the code out of 10
+score=yes
