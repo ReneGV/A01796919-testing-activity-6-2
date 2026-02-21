@@ -46,13 +46,13 @@ jobs:
       - name: Upload coverage.xml
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-xml
-          path: coverage.xml
+          name: coverage-xml.zip
+          path: coverage_xml
 
       - name: Upload coverage HTML
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-html
+          name: coverage-html.zip
           path: coverage_html
 
       - name: Post coverage summary to PR
